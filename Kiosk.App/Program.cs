@@ -24,6 +24,7 @@ var rootCommand = new RootCommand
         }
         else {
             Console.WriteLine("Dotnet works!");
+            ;
         }
     })
 };
