@@ -38,7 +38,7 @@ var read = new Command("read", "Read the survey file and display diagnostic info
 
 var ask = new Command("ask", "Ask a single voter the questionnaire")
 {
-    Handler = CommandHandler.Create(() => new Ask().Run())
+    //Handler = CommandHandler.Create(() => new Question(Clas).Run())
 };
 
 var survey = new Command("survey", "Ask all voters the questionnaire")
