@@ -78,4 +78,19 @@ rootCommand.AddCommand(report);
 
 
 // Parse the incoming args and invoke the handler
-return rootCommand.Invoke(args);
+
+var questions = new List<string>();
+questions.Add("question 1?");
+questions.Add("question 2?");
+var questionIterator = 0;
+
+var voters = new List<string>();
+voters.Add("Voter1");
+voters.Add("Voter2");
+voters.Add("Voter3");
+var voterNumber = 0;
+Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterNumber] + " please come forward and press enter when you are ready.");
+var voterReady = Console.ReadLine();
+Console.WriteLine("Answer this question, please?");
+var answer = Console.ReadLine();
+// return rootCommand.Invoke(args);
