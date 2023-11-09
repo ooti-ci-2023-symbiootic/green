@@ -2,5 +2,6 @@ enum QuestionType
 {
   SingleAnswer,
   MultipleAnswer,
-  Descriptional
+  Descriptional, 
+  Range
 }
