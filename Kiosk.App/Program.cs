@@ -102,6 +102,8 @@ while (voterI < numVoters)
     {
         //var survey = new Survey(voters[voterI], questions[questionIterator]);
         //survey.Start();
+        Console.WriteLine(questions[questionIterator].QuestionDescription);
+        var answer = Console.ReadLine();
         questionIterator += 1;
     }
     Console.WriteLine("Stop with the surveys? Y/N");
