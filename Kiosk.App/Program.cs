@@ -94,7 +94,7 @@ var numVoters = voters.Count;
 var voterI = 0;
 while (voterI < numVoters)
 {
-    Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterNumber] + " please come forward and press enter when you are ready.");
+    Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterI] + " please come forward and press enter when you are ready.");
 }
 var voterReady = Console.ReadLine();
 Console.WriteLine("Answer this question, please?");
