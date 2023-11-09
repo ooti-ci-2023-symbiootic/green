@@ -79,10 +79,11 @@ rootCommand.AddCommand(report);
 
 // Parse the incoming args and invoke the handler
 
-var questions = new List<string>();
+var parser = new Parser();
+var questions = parser.getAllTheQuestion();
 //var questions = Read.readQuestion();
 
-var questionIterator = 0;
+var numQuestions = questions.Count;
 
 var voters = new List<string>
 {
@@ -94,10 +95,25 @@ var numVoters = voters.Count;
 var voterI = 0;
 while (voterI < numVoters)
 {
-    Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterI] + " please come forward and press enter when you are ready.");
+    Console.WriteLine("Welcome to the voting Kiosk app. " + voters[voterI] + " please come forward and press enter when you are ready.");
+    Console.ReadLine();
+    var questionIterator = 0;
+    while (questionIterator < numQuestions)
+    {
+        //var survey = new Survey(voters[voterI], questions[questionIterator]);
+        //survey.Start();
+        questionIterator += 1;
+    }
+    Console.WriteLine("Stop with the surveys? Y/N");
+    var stopSurveys = Console.ReadLine();
+    if (voterI < numVoters-1 && stopSurveys.Equals("Y", StringComparison.OrdinalIgnoreCase))
+    {
+        voterI = numVoters;
+    }
+    voterI += 1;
 }
-var voterReady = Console.ReadLine();
-Console.WriteLine("Answer this question, please?");
-var answer = Console.ReadLine();
+Console.WriteLine("Now producing reports for all the questions.");
+// produce reports
+Console.WriteLine("Thank you for using the voting Kiosk app.");
 
 // return rootCommand.Invoke(args);
