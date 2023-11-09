@@ -14,111 +14,126 @@
     </div>
 
     <script>
-      const questions = [
-        {
-          type: "single",
-          title: "Hello",
-          choices: ["cat", "dog"],
-          answers: [
-            {
-              name: "sina",
-              answer: "cat",
-            },
-          ],
-        },
-        {
-          type: "single",
-          title: "Favorite Color",
-          choices: ["blue", "green", "red"],
-          answers: [
-            {
-              name: "alice",
-              answer: "green",
-            },
-            {
-              name: "bob",
-              answer: "blue",
-            },
-          ],
-        },
-        {
-          type: "multi",
-          title: "Preferred Drink",
-          choices: ["coffee", "tea", "juice"],
-          answers: [
-            {
-              name: "emma",
-              answer: "coffee",
-            },
-          ],
-        },
-      ];
+      let pieChartInstance = null;
 
-      const questionsDiv = document.getElementById("questions");
-      const chartContainer = document.getElementById("chartContainer");
-      const pieChartCanvas = document
-        .getElementById("pieChart")
-        .getContext("2d");
+      fetch("questions.txt") // Assuming your JSON file is in x folder and named data.json
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const tableRows = data;
+          const questions = data;
+          /*
+        const questions = [
+          {
+            type: "single",
+            title: "Hello",
+            choices: ["cat", "dog"],
+            answers: [
+              {
+                name: "sina",
+                answer: "cat",
+              },
+            ],
+          },
+          {
+            type: "single",
+            title: "Favorite Color",
+            choices: ["blue", "green", "red"],
+            answers: [
+              {
+                name: "alice",
+                answer: "green",
+              },
+              {
+                name: "bob",
+                answer: "blue",
+              },
+            ],
+          },
+          {
+            type: "multi",
+            title: "Preferred Drink",
+            choices: ["coffee", "tea", "juice"],
+            answers: [
+              {
+                name: "emma",
+                answer: "coffee",
+              },
+            ],
+          },
+        ];
+*/
+          const questionsDiv = document.getElementById("questions");
+          const chartContainer = document.getElementById("chartContainer");
+          const pieChartCanvas = document
+            .getElementById("pieChart")
+            .getContext("2d");
 
-      questions.forEach((question) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.innerText = question.title;
-        questionDiv.style.cursor = "pointer";
-        questionDiv.addEventListener("click", () => {
-          renderPieChart(question);
-        });
-        questionsDiv.appendChild(questionDiv);
-      });
+          questions.forEach((question) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.innerText = question.title;
+            questionDiv.style.cursor = "pointer";
+            questionDiv.addEventListener("click", () => {
+              if (question.type == "single") {
+                renderPieChart(question);
+              }
+            });
+            questionsDiv.appendChild(questionDiv);
+          });
 
-      function renderPieChart(question) {
-        const data = {};
-        question.choices.forEach((choice) => {
-          data[choice] = 0;
-        });
+          function renderPieChart(question) {
+            if (pieChartInstance) {
+              pieChartInstance.destroy();
+            }
+            const data = {};
+            question.choices.forEach((choice) => {
+              data[choice] = 0;
+            });
 
-        question.answers.forEach((answer) => {
-          data[answer.answer]++;
-        });
+            question.answers.forEach((answer) => {
+              data[answer.answer]++;
+            });
 
-        const chartData = {
-          labels: Object.keys(data),
-          datasets: [
-            {
-              data: Object.values(data),
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
+            const chartData = {
+              labels: Object.keys(data),
+              datasets: [
+                {
+                  data: Object.values(data),
+                  backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                  ],
+                  borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                  ],
+                  borderWidth: 1,
+                },
               ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
-              borderWidth: 1,
-            },
-          ],
-        };
+            };
 
-        const chartOptions = {
-          responsive: true,
-          maintainAspectRatio: false,
-        };
+            const chartOptions = {
+              responsive: true,
+              maintainAspectRatio: false,
+            };
 
-        new Chart(pieChartCanvas, {
-          type: "pie",
-          data: chartData,
-          options: chartOptions,
+            pieChartInstance = new Chart(pieChartCanvas, {
+              type: "pie",
+              data: chartData,
+              options: chartOptions,
+            });
+
+            chartContainer.style.display = "block";
+          }
         });
-
-        chartContainer.style.display = "block";
-      }
     </script>
   </body>
 </html>
