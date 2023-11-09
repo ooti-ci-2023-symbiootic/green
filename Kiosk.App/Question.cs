@@ -8,7 +8,7 @@ namespace Kiosk.App;
 
 class Question<T> {
     private String questionDescription; 
-    private readonly QuestionType questionType;
+    private QuestionType questionType;
     private List<T> possibleAnswers; 
     private Answer<T> answer; 
     
@@ -35,6 +35,33 @@ class Question<T> {
     {
         var possibleAnswers = input;
     }
+
+    public Answer<T> GetAnswer()
+    {
+        return answer;
+    }
+
+
+
+
+    public void SetAnswer(Answer<T> answer)
+    {
+        answer = answer;
+    }
+
+    public QuestionType GetQuestionType()
+    {
+        return questionType;
+    }
+
+
+
+
+    public void SetQuestionType(QuestionType questionType)
+    {
+        questionType = questionType;
+    }
+
 
 
 
