@@ -14,13 +14,17 @@ class Question<T> {
     
 
 
-    public String QuestionDescription { 
-        get{
-            return questionDescription;
-        }
-         set{
-            questionDescription = "dumyy question";
-         }
+     public String GetQuestionDescription()
+    {
+        return questionDescription;
+    }
+
+
+
+
+    public void SetQuestionDescription(String questionDescription)
+    {
+        questionDescription = questionDescription
     }
 
     public List<T> GetPossibleAnswers()
