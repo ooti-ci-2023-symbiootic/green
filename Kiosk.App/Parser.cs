@@ -23,7 +23,7 @@ class Parser{
         thirdQuestion.QuestionDescription = "What is your favourite food?";
         thirdQuestion.SetQuestionType(QuestionType.SingleAnswer);
         var questionThreeOptions = new List<string> {"Rice", "Burger"};
-        //thirdQuestion.SetPossibleAnswers(questionThreeOptions);
+        thirdQuestion.SetPossibleAnswers(questionThreeOptions);
         questionList.Add(thirdQuestion);
 
        
