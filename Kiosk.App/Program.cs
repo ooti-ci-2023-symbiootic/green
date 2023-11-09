@@ -79,11 +79,9 @@ rootCommand.AddCommand(report);
 
 // Parse the incoming args and invoke the handler
 
-var questions = new List<string>
-{
-    "question 1?",
-    "question 2?"
-};
+var questions = new List<string>();
+//var questions = Read.readQuestion();
+
 var questionIterator = 0;
 
 var voters = new List<string>
@@ -92,8 +90,12 @@ var voters = new List<string>
     "Voter2",
     "Voter3"
 };
-var voterNumber = 0;
-Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterNumber] + " please come forward and press enter when you are ready.");
+var numVoters = voters.Count;
+var voterI = 0;
+while (voterI < numVoters)
+{
+    Console.WriteLine("Welcome to the voting Kiosk. " + voters[voterNumber] + " please come forward and press enter when you are ready.");
+}
 var voterReady = Console.ReadLine();
 Console.WriteLine("Answer this question, please?");
 var answer = Console.ReadLine();
