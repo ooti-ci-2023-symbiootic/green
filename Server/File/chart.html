@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <h1>Survey Results</h1>
+    <div id="charts-container"></div>
+
+    <script>
+      const data = [
+        {
+          type: "single",
+          title: "Hello",
+          choices: ["cat", "dog"],
+          answers: [{ name: "sina", answer: "cat" }],
+        },
+        {
+          type: "single",
+          title: "Favorite Color",
+          choices: ["blue", "green", "red"],
+          answers: [
+            { name: "alice", answer: "green" },
+            { name: "bob", answer: "blue" },
+          ],
+        },
+        {
+          type: "single",
+          title: "Preferred Drink",
+          choices: ["coffee", "tea", "juice"],
+          answers: [{ name: "emma", answer: "coffee" }],
+        },
+      ];
+
+      const chartsContainer = document.getElementById("charts-container");
+
+      data.forEach((question) => {
+        if (question.type === "single") {
+          const choicesCount = {};
+          question.choices.forEach((choice) => {
+            choicesCount[choice] = 0;
+          });
+
+          question.answers.forEach((answer) => {
+            choicesCount[answer.answer]++;
+          });
+
+          const chartCanvas = document.createElement("canvas");
+          const chartContext = chartCanvas.getContext("2d");
+
+          const chartData = {
+            labels: Object.keys(choicesCount),
+            datasets: [
+              {
+                data: Object.values(choicesCount),
+                backgroundColor: ["blue", "green", "red"], // You can customize the colors here
+              },
+            ],
+          };
+
+          const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+          };
+
+          const chart = new Chart(chartContext, {
+            type: "bar",
+            data: chartData,
+            options: chartOptions,
+          });
+
+          const chartTitle = document.createElement("h2");
+          chartTitle.textContent = question.title;
+          chartsContainer.appendChild(chartTitle);
+          chartsContainer.appendChild(chartCanvas);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+[
+  {
+    "type": "single",
+    "title": "Hello",
+    "choices": ["cat", "dog"],
+    "answers": [
+      {
+        "name": "sina",
+        "answer": "cat"
+      }
+    ]
+  },
+  {
+    "type": "single",
+    "title": "Favorite Color",
+    "choices": ["blue", "green", "red"],
+    "answers": [
+      {
+        "name": "alice",
+        "answer": "green"
+      },
+      {
+        "name": "bob",
+        "answer": "blue"
+      }
+    ]
+  },
+  {
+    "type": "single",
+    "title": "Preferred Drink",
+    "choices": ["coffee", "tea", "juice"],
+    "answers": [
+      {
+        "name": "emma",
+        "answer": "coffee"
+      }
+    ]
+  }
+]
