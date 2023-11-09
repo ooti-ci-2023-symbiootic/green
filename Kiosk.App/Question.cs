@@ -35,7 +35,7 @@ class Question<T> {
 
 
 
-    public void SetPossibleAnswers(T input)
+    public void SetPossibleAnswers(List<T> input)
     {
         var possibleAnswers = input;
     }
